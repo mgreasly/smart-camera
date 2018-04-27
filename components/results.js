@@ -7,8 +7,11 @@ class Results extends Component {
         return (
             <div id="results">
                 <h1>Results...</h1>
-                <img width="300" src={this.props.image} />
-                {this.props.result && this.props.result[0].description}
+                {this.props.results && this.props.results.map(function(result, index) {
+                    var text = "not recognised"
+                    if (result.logo && result.logo[0] && result.logo[0].description) text = result.logo[0].description
+                    return <div><img src={result.image} /> {text}</div>
+                })}
             </div>
 		);
    	}
