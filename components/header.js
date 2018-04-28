@@ -1,12 +1,11 @@
 import { Component } from 'preact';
 import { route } from 'preact-router';
-import Drawer from 'preact-material-components/Drawer';
-import List from 'preact-material-components/List';
-import Toolbar from 'preact-material-components/Toolbar';
-import 'preact-material-components/Drawer/style.css';
-import 'preact-material-components/List/style.css';
-import 'preact-material-components/Theme/style.css';
-import 'preact-material-components/Toolbar/style.css';
+import Drawer from 'preact-material-components-mgr/Drawer';
+import List from 'preact-material-components-mgr/List';
+import Toolbar from 'preact-material-components-mgr/Toolbar';
+import 'preact-material-components-mgr/Drawer/style.css';
+import 'preact-material-components-mgr/List/style.css';
+import 'preact-material-components-mgr/Toolbar/style.css';
 
 export default class Header extends Component {
     closeDrawer = () => { this.drawer.MDComponent.open = false; }

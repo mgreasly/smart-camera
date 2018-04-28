@@ -1,7 +1,6 @@
 import { Component } from 'preact';
-import Button from 'preact-material-components/Button';
-import 'preact-material-components/Button/style.css';
-import 'preact-material-components/Theme/style.css';
+import Chips from 'preact-material-components-mgr/Chips';
+import 'preact-material-components-mgr/Chips/style.css';
 
 export default class MediaDevices extends Component {
     constructor(props) {
@@ -17,10 +16,15 @@ export default class MediaDevices extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.devices.map(function(device, index) {
-                    return <Button raised dense id={device.deviceId} title={device.deviceId} onClick={this.props.handleDeviceChange}>{device.label}</Button>
-                }, this)}
+            <div class="media-devices">
+                <Chips choice>
+                    {this.state.devices.map(function(device, index) {
+                        return <Chips.Chip id={device.deviceId} title={device.deviceId} onClick={this.props.handleDeviceChange}>
+                            <Chips.Checkmark/>
+                            <Chips.Text>{device.label}</Chips.Text>
+                        </Chips.Chip>
+                    }, this)}
+                </Chips>            
             </div>
         )
     }

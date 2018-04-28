@@ -18,6 +18,46 @@ html, body {
 	-webkit-font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased;
 }
 * { box-sizing: border-box; }
+
+/* toolbar & drawer */
+.mdc-toolbar { background-color: #FD7507 !important; }
+.mdc-drawer__header { height: 295px !important; }
+.mdc-drawer__header-content {
+	background-image: url('/assets/avanade-logo.jpg');
+	background-origin: 0 0;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-color: #FD7507;
+	color: #fff;
+	font-size:  larger;
+}
+
+/* home page */
+
+
+/* camera page */
+html, body, .app, .camera-page { height: 100%;}
+.camera-page, .media-devices, .webcam { background-color: #111; }
+.webcam video { width: 100%; }
+.media-devices .mdc-chip { font-size: 0.6rem; }
+@media screen and (orientation:portrait) {
+	.footer { position:fixed; left:0px; bottom:0px; height:72px; width:100%; padding: 8px; }
+	.camera-buttons { margin: auto !important; width: 56px !important; }
+}
+@media screen and (orientation:landscape) {
+	.footer { position:fixed; right:0px; top: 48px; height:100%; width:72px; padding: 8px; }
+	.camera-buttons { position: absolute; top: 50%; height: 100px; margin-top: -56px; }
+}
+.mdc-fab { background-color: red !important; }
+
+/* results page */
+.mdc-card {
+	margin-bottom: 8px;
+}
+
+
+/*
 #app { height: 100%; }
 #home video { width: 100%; }
 #results img { width: 200px; }
+*/

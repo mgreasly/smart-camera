@@ -8,7 +8,7 @@ import ListPage from './listPage';
 export default class App extends Component {
     render() {
         return (
-            <div id="app">
+            <div class="app">
                 <Header />
                 <Router>
                     <HomePage path="/" />

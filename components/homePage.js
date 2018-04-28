@@ -1,8 +1,6 @@
 import { Component } from 'preact';
 import { route } from 'preact-router';
 import Webcam from 'react-webcam';
-import Button from 'preact-material-components/Button';
-import 'preact-material-components/Button/style.css';
 
 export default class HomePage extends Component {
     capture = () => { 

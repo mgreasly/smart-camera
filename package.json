@@ -27,7 +27,7 @@
     "axios": "^0.18.0",
     "preact": "^8.2.1",
     "preact-compat": "^3.17.0",
-    "preact-material-components": "^1.4.2",
+    "preact-material-components-mgr": "^1.4.2",
     "preact-router": "^2.6.0",
     "react-webcam": "^0.4.3",
     "redux-zero": "^4.12.0"
