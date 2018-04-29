@@ -7,19 +7,23 @@ import 'preact-material-components-mgr/Button/style.css';
 
 class ListPage extends Component {
 	render() {
-        debugger
         return (
-            <div id="results">
+            <div class="results">
                 {this.props.results && this.props.results.map(function(result, index) {
                     var text = "not recognised"
                     if (result.logo && result.logo[0] && result.logo[0].description) text = result.logo[0].description
                     return (
                         <Card>
-                            <Card.Media className="card-media"><img width="200" src={result.image} /></Card.Media>
-                            <Card.Actions>
-                                {text}
-                                <Card.ActionButton>Push Me</Card.ActionButton>
-                            </Card.Actions>
+                            <div class="card-media"><img src={result.image} /></div>
+                            <div class="card-text">
+                                <div>
+                                    <h1>{text}</h1>
+                                    {text != "not recognised" && <p>product details</p>}
+                                </div>
+                                <div class="card-actions">
+                                    {text != "not recognised" && <Card.ActionButton class="card-action-button">Buy this</Card.ActionButton>}
+                                </div>
+                            </div>
                       </Card>                        
                     )
                 })}

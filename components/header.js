@@ -1,6 +1,7 @@
 import { Component } from 'preact';
 import { route } from 'preact-router';
 import Drawer from 'preact-material-components-mgr/Drawer';
+import Icon from 'preact-material-components-mgr/Icon';
 import List from 'preact-material-components-mgr/List';
 import Toolbar from 'preact-material-components-mgr/Toolbar';
 import 'preact-material-components-mgr/Drawer/style.css';
@@ -30,9 +31,9 @@ export default class Header extends Component {
                     <Drawer.DrawerHeader>AvaGo Smart Camera</Drawer.DrawerHeader>
 					<Drawer.DrawerContent>
 						<List>
-							<List.LinkItem onClick={this.linkTo('/')}>Home</List.LinkItem>
-							<List.LinkItem onClick={this.linkTo('/camera')}>Camera</List.LinkItem>
-							<List.LinkItem onClick={this.linkTo('/list')}>List</List.LinkItem>
+							<List.LinkItem onClick={this.linkTo('/')}><Icon>home</Icon> Home</List.LinkItem>
+							<List.LinkItem onClick={this.linkTo('/camera')}><Icon>camera</Icon> Camera</List.LinkItem>
+							<List.LinkItem onClick={this.linkTo('/list')}><Icon>shopping_basket</Icon> List</List.LinkItem>
 						</List>
 					</Drawer.DrawerContent>				
                 </Drawer.TemporaryDrawer>

@@ -1,9 +1,9 @@
 import createStore from 'redux-zero';
 import axios from 'axios';
 
-const store = createStore({ results: [] });
+const store = createStore({ results: [], deviceId: '' });
 
-const mapToProps = ({ results }) => ({ results });
+const mapToProps = ({ results, deviceId }) => ({ results, deviceId });
 
 const actions = ({ setState }) => ({
     getResults(state, value) {
@@ -21,11 +21,14 @@ const actions = ({ setState }) => ({
                 image: value,
                 logo: response.data.responses[0].logoAnnotations
             }])
-            return { results: results }
+            return { results: results, deviceId: state.deviceId }
         })
         .catch(error => {
-            return { results: state.results }
+            return { results: state.results, deviceId: state.deviceId }
         })
+    },
+    setDeviceId(state, value) {
+        return { results: state.results, deviceId: value }
     }
 });
 

@@ -21,14 +21,15 @@ class CameraPage extends Component {
 
   handleDeviceChange = (event) => { 
     this.setState({ deviceId: event.currentTarget.id }) 
+    this.props.setDeviceId(event.currentTarget.id)
   }
 
   render() {    
     return (
       <div class="camera-page">
-        <MediaDevices kind="videoinput" selected={this.state.deviceId} handleDeviceChange={this.handleDeviceChange} />
+        <MediaDevices kind="videoinput" selected={this.props.deviceId} handleDeviceChange={this.handleDeviceChange} />
         <div class="webcam">
-          {this.state.deviceId && <Webcam key={this.state.deviceId} audioSource="" videoSource={this.state.deviceId} audio={false} ref={webcam => { this.webcam = webcam; }} screenshotFormat="image/jpeg" />}
+          <Webcam key={this.props.deviceId} audioSource="" videoSource={this.state.deviceId} audio={false} ref={webcam => { this.webcam = webcam; }} screenshotFormat="image/jpeg" />
         </div>
         <div class="footer">
           <div class="camera-buttons">

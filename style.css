@@ -31,14 +31,19 @@ html, body {
 	color: #fff;
 	font-size:  larger;
 }
+.mdc-list { color: #333;}
+.mdc-list .mdc-icon { margin-right: 12px; }
 
 /* home page */
-
+.home { margin: 16px; }
+.home h1 { font-size: 1.4em; }
+.home h2 { font-size: 1.1em; }
 
 /* camera page */
 html, body, .app, .camera-page { height: 100%;}
-.camera-page, .media-devices, .webcam { background-color: #111; }
+.camera-page, .webcam { background-color: #111; }
 .webcam video { width: 100%; }
+.media-devices { position: absolute; }
 .media-devices .mdc-chip { font-size: 0.6rem; }
 @media screen and (orientation:portrait) {
 	.footer { position:fixed; left:0px; bottom:0px; height:72px; width:100%; padding: 8px; }
@@ -51,13 +56,12 @@ html, body, .app, .camera-page { height: 100%;}
 .mdc-fab { background-color: red !important; }
 
 /* results page */
-.mdc-card {
-	margin-bottom: 8px;
-}
-
-
-/*
-#app { height: 100%; }
-#home video { width: 100%; }
-#results img { width: 200px; }
-*/
+.results { margin: 16px; }
+.mdc-card {	flex-direction: row !important; margin-bottom: 8px; }
+.card-media { width: 200px; }
+.card-media img { height: 100%; width: 100%; }
+.card-text { margin: 8px; display: flex; flex-direction: column; }
+.card-text h1 { font-size: 1em !important; margin-top: 0; }
+.card-text p { margin: 0; }
+.card-actions { margin-top: auto; }
+.card-action-button { color: #FD7507 !important;}
