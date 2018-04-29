@@ -23,7 +23,7 @@ html, body {
 .mdc-toolbar { background-color: #FD7507 !important; }
 .mdc-drawer__header { height: 295px !important; }
 .mdc-drawer__header-content {
-	background-image: url('/assets/avanade-logo.jpg');
+	background-image: url('/assets/avanade-logo.png');
 	background-origin: 0 0;
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -43,7 +43,7 @@ html, body {
 html, body, .app, .camera-page { height: 100%;}
 .camera-page, .webcam { background-color: #111; }
 .webcam video { width: 100%; }
-.media-devices { position: absolute; }
+.media-devices { position: absolute; z-index: 999; }
 .media-devices .mdc-chip { font-size: 0.6rem; }
 @media screen and (orientation:portrait) {
 	.footer { position:fixed; left:0px; bottom:0px; height:72px; width:100%; padding: 8px; }

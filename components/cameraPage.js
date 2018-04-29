@@ -10,10 +10,10 @@ import 'preact-material-components-mgr/Fab/style.css';
 class CameraPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { deviceId: '' }
+    this.state = { deviceId: '' };
   }
 
-  capture = () => { 
+  capture = () => {
     const image = this.webcam.getScreenshot(); 
     this.props.getResults(image);
     route("/list");
@@ -23,17 +23,16 @@ class CameraPage extends Component {
     this.setState({ deviceId: event.currentTarget.id }) 
     this.props.setDeviceId(event.currentTarget.id)
   }
-
-  render() {    
+  render() {
     return (
       <div class="camera-page">
         <MediaDevices kind="videoinput" selected={this.props.deviceId} handleDeviceChange={this.handleDeviceChange} />
         <div class="webcam">
-          <Webcam key={this.props.deviceId} audioSource="" videoSource={this.state.deviceId} audio={false} ref={webcam => { this.webcam = webcam; }} screenshotFormat="image/jpeg" />
+          <Webcam key={this.props.deviceId} audioSource="" videoSource={this.state.deviceId} audio={false} ref={webcam => { if (webcam) this.webcam = webcam; }} screenshotFormat="image/jpeg" />
         </div>
         <div class="footer">
           <div class="camera-buttons">
-            <Fab ripple={true} onclick={this.capture}><Fab.Icon>stop</Fab.Icon></Fab>
+            <Fab ripple={true} onclick={this.capture}><Fab.Icon>camera</Fab.Icon></Fab>
           </div>
         </div>
       </div>
