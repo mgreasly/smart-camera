@@ -10,18 +10,16 @@ class ListPage extends Component {
         return (
             <div class="results">
                 {this.props.results && this.props.results.map(function(result, index) {
-                    var text = "not recognised"
-                    if (result.logo && result.logo[0] && result.logo[0].description) text = result.logo[0].description
                     return (
                         <Card>
                             <div class="card-media"><img src={result.image} /></div>
                             <div class="card-text">
                                 <div>
-                                    <h1>{text}</h1>
-                                    {text != "not recognised" && <p>product details</p>}
+                                    <h1>{result.product && result.product.name}</h1>
+                                    <p>{result.product && result.product.description}<br/>$ {result.product && result.product.price}</p>
                                 </div>
                                 <div class="card-actions">
-                                    {text != "not recognised" && <Card.ActionButton class="card-action-button">Buy this</Card.ActionButton>}
+                                    {result.product && <Card.ActionButton class="card-action-button">Buy this</Card.ActionButton>}
                                 </div>
                             </div>
                       </Card>                        
