@@ -3,26 +3,21 @@ import { route } from 'preact-router';
 import { connect } from 'redux-zero/preact';
 import {mapToProps, actions} from './store';
 import Webcam from 'react-webcam';
-import MediaDevices from './mediadevices';
 import Fab from 'preact-material-components-mgr/Fab';
 import 'preact-material-components-mgr/Fab/style.css';
+import MediaDevices from './mediadevices';
 
 class CameraPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { deviceId: '' };
-  }
-
-  capture = () => {
+  capture = () => { 
     const image = this.webcam.getScreenshot(); 
     this.props.getResults(image);
     route("/list");
   }
 
   handleDeviceChange = (event) => { 
-    this.setState({ deviceId: event.currentTarget.id }) 
     this.props.setDeviceId(event.currentTarget.id)
   }
+
   render() {
     return (
       <div class="camera-page">

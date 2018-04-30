@@ -6,6 +6,7 @@ import List from 'preact-material-components-mgr/List';
 import Toolbar from 'preact-material-components-mgr/Toolbar';
 import 'preact-material-components-mgr/Drawer/style.css';
 import 'preact-material-components-mgr/List/style.css';
+import 'preact-material-components-mgr/Theme/style.css';
 import 'preact-material-components-mgr/Toolbar/style.css';
 
 export default class Header extends Component {

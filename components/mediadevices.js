@@ -10,8 +10,8 @@ export default class MediaDevices extends Component {
 
     componentDidMount() {
         navigator.mediaDevices
-            .enumerateDevices()
-            .then((devices) => { this.setState({ devices: devices.filter((device) => (device.kind == this.props.kind ), this) }) });
+        .enumerateDevices()
+        .then((devices) => { this.setState({ devices: devices.filter((device) => (device.kind == this.props.kind ), this) }) });
     }
 
     render() {
