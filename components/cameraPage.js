@@ -8,8 +8,8 @@ import 'preact-material-components-mgr/Fab/style.css';
 import MediaDevices from './mediadevices';
 
 class CameraPage extends Component {
-  capture = () => { 
-    const image = this.webcam.getScreenshot(); 
+  capture = () => {
+    const image = this.webcam.getScreenshot();
     this.props.getResults(image);
     route("/list");
   }

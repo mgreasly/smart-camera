@@ -33,6 +33,7 @@ export default class Header extends Component {
 					<Drawer.DrawerContent>
 						<List>
 							<List.LinkItem onClick={this.linkTo('/')}><Icon>home</Icon> Home</List.LinkItem>
+							<List.LinkItem onClick={this.linkTo('/specials')}><Icon>stars</Icon>Specials</List.LinkItem>
 							<List.LinkItem onClick={this.linkTo('/camera')}><Icon>camera_alt</Icon> Camera</List.LinkItem>
 							<List.LinkItem onClick={this.linkTo('/list')}><Icon>shopping_basket</Icon> List</List.LinkItem>
 						</List>

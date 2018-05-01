@@ -4,6 +4,7 @@ import Header from './header';
 import HomePage from './homePage';
 import CameraPage from './CameraPage';
 import ListPage from './listPage';
+import SpecialsPage from './specialsPage';
 
 export default class App extends Component {
     render() {
@@ -12,6 +13,7 @@ export default class App extends Component {
                 <Header />
                 <Router>
                     <HomePage path="/" />
+                    <SpecialsPage path="/specials" />
                     <CameraPage path="/camera" />
                     <ListPage path="/list" />
                 </Router>
