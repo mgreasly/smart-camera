@@ -8,7 +8,6 @@ const mapToProps = ({ results, deviceId, specials }) => ({ results, deviceId, sp
 const actions = ({ setState }) => ({
     getResults(state, value) {
         setState({ loading: true });
-        console.log("loading...");
         return axios.post(
             'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCTVMHDJUxUdkd9_0NhrKGC-86PObf9QYM',
             {
@@ -25,19 +24,17 @@ const actions = ({ setState }) => ({
                 price: ''
             };
             var results = state.results.concat([{ image: value, product: product }]);
-            console.log("done...");
-            return { results: results, deviceId: state.deviceId };
+            return { results: results };
         })
         .catch(error => {
             var results = state.results.concat([{
                 image: value,
                 product: { name: 'unidentified', description: '', price: '' }
             }]);
-            console.log("done...");
-            return { results: results, deviceId: state.deviceId };
+            return { results: results };
         })
     },
-    setDeviceId(state, value) { return { results: state.results, deviceId: value } },
+    setDeviceId(state, value) { return { deviceId: value } },
     getSpecials() {
         return axios.get('https://testavagoapi.azurewebsites.net/api/deals')
         .then(response => {

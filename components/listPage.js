@@ -7,10 +7,8 @@ import 'preact-material-components-mgr/Button/style.css';
 
 class ListPage extends Component {
 	render() {
-        var value =  this.props.loading?"TRUE":"FALSE"
         return (
             <div class="results">
-                <p>{value}</p>
                 {this.props.results && this.props.results.map(function(result, index) {
                     return (
                         <Card>
