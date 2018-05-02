@@ -1,36 +1,36 @@
 import createStore from 'redux-zero';
 import axios from 'axios';
 
-const store = createStore({ results: [], deviceId: '', specials: [] });
+const store = createStore({ results: [], loadingResults: false, deviceId: '', specials: [], loadingSpecials: false });
 
-const mapToProps = ({ results, deviceId, specials }) => ({ results, deviceId, specials });
+const mapToProps = ({ results, loadingResults, deviceId, specials, loadingSpecials }) => ({ results, loadingResults, deviceId, specials, loadingSpecials });
 
 const actions = ({ setState }) => ({
     getResults(state, value) {
+        setState({ loadingResults: true });
         return axios.post(
             'http://workshop-ava.azurewebsites.net/api/Camera/RecognizeImage', 
-            value,
-            { 'Content-Type': 'application/x-www-form-urlencoded' }
+            value
         )
         .then(response => {
-            var product = {
-                name: response.data.responses[0].logoAnnotations[0].description,
-                description: '',
-                price: ''
+            var data = JSON.parse(response.data);
+            var product = data.Products[0];
+            var result = {
+                name: product.Name,
+                description: product.Products[0].FullDescription,
+                price: product.Products[0].Price
             };
-            var results = state.results.concat([{ image: value, product: product }]);
-            return { results: results };
+            var results = [{ image: value, product: result }].concat(state.results);
+            return { results: results, loadingResults: false, deviceId: state.deviceId, specials: state.specials, loadingSpecials: state.loadingSpecials };
         })
         .catch(error => {
-            var results = state.results.concat([{
-                image: value,
-                product: { name: 'unidentified', description: '', price: '' }
-            }]);
-            return { results: results };
+            var results = [{ image: value, product: null }].concat(state.results);
+            return { results: results, loadingResults: false, deviceId: state.deviceId, specials: state.specials, loadingSpecials: state.loadingSpecials };
         })
     },
-    setDeviceId(state, value) { return { deviceId: value } },
-    getSpecials() {
+    setDeviceId(state, value) { return { results: state.results, deviceId: value } },
+    getSpecials(state) {
+        setState({ specials: [], loadingSpecials: true });
         return axios.get('https://testavagoapi.azurewebsites.net/api/deals')
         .then(response => {
             var specials = response.data.map(function(item, index) {
@@ -42,42 +42,12 @@ const actions = ({ setState }) => ({
                     image: item.imageUrl
                 };
             });
-            return { specials: specials };
+            return { results: state.results, loadingResults: state.loadingResults, deviceId: state.deviceId, specials: specials, loadingSpecials: false };
         })
         .catch(error => {
-            return { specials: [] };
+            return { results: state.results, loadingResults: state.loadingResults, deviceId: state.deviceId, specials: [], loadingSpecials: false };
         })
     }  
 });
 
 export { store, mapToProps, actions };
-
-
-import createStore from 'redux-zero';
-import axios from 'axios';
-
-const store = createStore({ image: null, result: null });
-
-const mapToProps = ({ image, result }) => ({ image, result });
-
-const actions = ({ setState }) => ({
-    getResults(state, value) {
-        return axios.post(
-            'http://workshop-ava.azurewebsites.net/api/Camera/RecognizeImage', 
-            value,
-            { 'Content-Type': 'application/x-www-form-urlencoded' }
-        )
-        .then(response => {
-            debugger;
-            var data = JSON.parse(response.data);
-            var product = {
-                name: data.Products[0].Name,
-                description: data.Products[0].Products[0].FullDescription,
-                price: data.Products[0].Products[0].Price
-            };
-            return { image: value, result: result };
-        })
-        .catch(error => {
-            return { image: value, result: null };
-        })
-    }

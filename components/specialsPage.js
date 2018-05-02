@@ -23,11 +23,25 @@ const SpecialsCard = ({special}) => (
     </Card> 
 )
 
+const ShadowSpecialsCard = () => (
+    <Card class="shadow-card">
+        <div class="card-media">&nbsp;</div>
+        <div class="card-text">
+            <div>
+                <h1>&nbsp;</h1>
+                <p>&nbsp;<br/>&nbsp;</p>
+            </div>
+            <div class="card-actions">&nbsp;</div>
+        </div>
+    </Card> 
+)
+
 class SpecialsPage extends Component {
     componentDidMount = () => { this.props.getSpecials(); }
     render() {
         return (
             <div class="specials">
+                {this.props.loadingSpecials && <ShadowSpecialsCard />}
                 {this.props.specials.map((special) => <SpecialsCard special={special} />)}
             </div>
         );
