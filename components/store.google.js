@@ -7,10 +7,15 @@ const mapToProps = ({ results, deviceId, specials }) => ({ results, deviceId, sp
 
 const actions = ({ setState }) => ({
     getResults(state, value) {
+        debugger;
         return axios.post(
-            'http://workshop-ava.azurewebsites.net/api/Camera/RecognizeImage', 
-            value,
-            { 'Content-Type': 'application/x-www-form-urlencoded' }
+            'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCTVMHDJUxUdkd9_0NhrKGC-86PObf9QYM',
+            {
+                "requests":[{
+                    "image":{ "content": value.replace("data:image/jpeg;base64,", "") },
+                    "features":[ { "type":"LOGO_DETECTION", "maxResults": 1 } ]
+                }]
+            }
         )
         .then(response => {
             var product = {
@@ -51,33 +56,3 @@ const actions = ({ setState }) => ({
 });
 
 export { store, mapToProps, actions };
-
-
-import createStore from 'redux-zero';
-import axios from 'axios';
-
-const store = createStore({ image: null, result: null });
-
-const mapToProps = ({ image, result }) => ({ image, result });
-
-const actions = ({ setState }) => ({
-    getResults(state, value) {
-        return axios.post(
-            'http://workshop-ava.azurewebsites.net/api/Camera/RecognizeImage', 
-            value,
-            { 'Content-Type': 'application/x-www-form-urlencoded' }
-        )
-        .then(response => {
-            debugger;
-            var data = JSON.parse(response.data);
-            var product = {
-                name: data.Products[0].Name,
-                description: data.Products[0].Products[0].FullDescription,
-                price: data.Products[0].Products[0].Price
-            };
-            return { image: value, result: result };
-        })
-        .catch(error => {
-            return { image: value, result: null };
-        })
-    }
